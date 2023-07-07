@@ -1,5 +1,7 @@
+import AppRouter from "@/AppRouter";
+
 function App() {
-  return <div>mern client</div>;
+  return <AppRouter />;
 }
 
 export default App;

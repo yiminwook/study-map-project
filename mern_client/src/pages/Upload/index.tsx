@@ -2,4 +2,4 @@ function Upload() {
   return <div>Upload</div>;
 }
 
-export default Upload();
+export default Upload;
