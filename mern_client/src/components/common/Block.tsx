@@ -1,4 +1,4 @@
-import { memo } from "react";
+import React from "react";
 import styled from "styled-components";
 
 interface Blockprops {
@@ -12,8 +12,6 @@ const StyledBlock = styled.div<Blockprops>`
   cursor: ${(props) => props.onClick && "poiner"};
 `;
 
-function Block({ height, onClick }: Blockprops) {
+export default React.memo(function Block({ height, onClick }: Blockprops) {
   return <StyledBlock height={height} onClick={onClick} />;
-}
-
-export default memo(Block);
+});

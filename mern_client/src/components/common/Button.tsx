@@ -1,9 +1,9 @@
-import { memo, ReactNode } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 interface ButtonProps {
-  children?: ReactNode;
+  children?: React.ReactNode;
   onClick: (e: any) => void;
   type?: "link" | "button";
   url?: string;
@@ -17,7 +17,12 @@ const StyledButton = styled.button<ButtonProps>`
   justify-content: center;
 `;
 
-function Button({ children, onClick, type = "button", url }: ButtonProps) {
+export default React.memo(function Button({
+  children,
+  onClick,
+  type = "button",
+  url,
+}: ButtonProps) {
   const RealButton = <StyledButton onClick={onClick}>{children}</StyledButton>;
 
   const RealLink = (
@@ -27,6 +32,4 @@ function Button({ children, onClick, type = "button", url }: ButtonProps) {
   );
 
   return type === "link" && url ? RealLink : RealButton;
-}
-
-export default memo(Button);
+});

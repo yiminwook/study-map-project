@@ -10,6 +10,7 @@
 
 # production
 /build
+/mern_mongo/data
 
 # misc
 .DS_Store

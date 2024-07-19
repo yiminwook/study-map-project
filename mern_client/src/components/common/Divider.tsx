@@ -1,4 +1,4 @@
-import { memo } from "react";
+import React from "react";
 import styled from "styled-components";
 
 interface Dividerprops {
@@ -14,8 +14,6 @@ const StyledDivider = styled.div<Dividerprops>`
   margin: 0 8px;
 `;
 
-function Divider({ width, height }: Dividerprops) {
+export default React.memo(function Divider({ width, height }: Dividerprops) {
   return <StyledDivider width={width} height={height} />;
-}
-
-export default memo(Divider);
+});
