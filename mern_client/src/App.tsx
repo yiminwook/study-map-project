@@ -1,7 +1,12 @@
 import AppRouter from "@/AppRouter";
+import { Provider } from "jotai";
 
 function App() {
-  return <AppRouter />;
+  return (
+    <Provider>
+      <AppRouter />
+    </Provider>
+  );
 }
 
 export default App;
