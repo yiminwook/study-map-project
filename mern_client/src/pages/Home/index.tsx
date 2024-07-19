@@ -1,5 +1,9 @@
-function Home() {
-  return <div>Home</div>;
-}
+import Navigation from "@/components/Navigation";
 
-export default Home;
+export default function Home() {
+  return (
+    <div>
+      <Navigation />
+    </div>
+  );
+}

@@ -5,7 +5,7 @@ interface InputProps {
   children?: React.ReactNode;
   name?: string;
   value?: string;
-  onChange?: (e: any) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit?: () => void;
 }
 

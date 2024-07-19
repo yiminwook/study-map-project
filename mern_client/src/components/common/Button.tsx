@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 interface ButtonProps {
   children?: React.ReactNode;
-  onClick: (e: any) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   type?: "link" | "button";
   url?: string;
 }
@@ -15,6 +15,9 @@ const StyledButton = styled.button<ButtonProps>`
   display: flex;
   align-items: center;
   justify-content: center;
+  background: none;
+  padding: 0%;
+  cursor: pointer;
 `;
 
 export default React.memo(function Button({

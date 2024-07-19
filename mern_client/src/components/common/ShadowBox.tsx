@@ -17,8 +17,7 @@ const StyledShadowBox = styled.div`
   padding: 6px 8px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px 0px;
   border: 1xp solid #e8e8e8;
-  box-sizing: border-box;
-  z-index: 101;
+  z-index: 101; //navermap 100
   background-color: #ffffff;
 `;
 
