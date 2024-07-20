@@ -2,6 +2,7 @@ import { infosAtom, selectInfoAtom } from "@/atoms/info";
 import { mapAtom } from "@/atoms/map";
 import { useAtom, useAtomValue } from "jotai";
 import Marker from "./common/Marker";
+import InfoWindow from "./common/InfoWindow";
 
 export default function MarkersContainer() {
   const map = useAtomValue(mapAtom);
@@ -34,6 +35,11 @@ export default function MarkersContainer() {
           onClick={() => setSelectInfo(() => null)}
         />
       )}
+      <InfoWindow
+        selectInfo={selectInfo}
+        map={map}
+        onSubmit={() => console.log("submit")}
+      />
     </>
   );
 }
