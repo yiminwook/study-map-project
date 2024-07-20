@@ -4,13 +4,16 @@ import MarkersContainer from "@/components/MarkersContainer";
 import Navigation from "@/components/Navigation";
 import { infos } from "@/data/infos";
 import { useSetAtom } from "jotai";
+import { useEffect } from "react";
 
 export default function Home() {
   const setInfos = useSetAtom(infosAtom);
 
-  if (infos) {
-    setInfos(() => infos);
-  }
+  useEffect(() => {
+    if (infos) {
+      setInfos(() => infos);
+    }
+  }, []);
 
   return (
     <>

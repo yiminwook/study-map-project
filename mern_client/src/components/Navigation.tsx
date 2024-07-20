@@ -1,4 +1,4 @@
-import { useAtom } from "jotai";
+import { useAtom, useSetAtom } from "jotai";
 import Block from "./common/Block";
 import Button from "./common/Button";
 import Divider from "./common/Divider";
@@ -11,6 +11,8 @@ import { selectAtom } from "@/atoms/search";
 import { useCallback } from "react";
 import Input from "./common/Input";
 import { useInput } from "@/hooks/useInput";
+import { infosAtom } from "@/atoms/info";
+import { infos } from "@/data/infos";
 
 interface NavigationProps {
   type?: "home" | "upload";
@@ -19,13 +21,14 @@ interface NavigationProps {
 export default function Navigation({ type = "home" }: NavigationProps) {
   const [select, setSelect] = useAtom(selectAtom);
   const { value, onChage } = useInput("");
+  const setInfos = useSetAtom(infosAtom);
 
   const onChangeSelect = useCallback(() => {
     setSelect((pre) => !pre);
   }, [select, setSelect]);
 
   const onSubmit = useCallback(() => {
-    console.log(value);
+    setInfos(() => infos);
   }, [value]);
 
   return (

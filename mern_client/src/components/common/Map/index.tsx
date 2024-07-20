@@ -13,8 +13,8 @@ export default function Map({ width, height, initMap }: MapProps) {
       zoom: 10,
     };
 
-    const map = new naver.maps.Map("map", mapOptions);
-    initMap?.(map);
+    const newMap = new naver.maps.Map("map", mapOptions);
+    initMap?.(newMap);
   }, []);
 
   return (

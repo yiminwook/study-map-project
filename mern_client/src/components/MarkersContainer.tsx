@@ -3,11 +3,22 @@ import { mapAtom } from "@/atoms/map";
 import { useAtom, useAtomValue } from "jotai";
 import Marker from "./common/Marker";
 import InfoWindow from "./common/InfoWindow";
+import { useCallback } from "react";
 
-export default function MarkersContainer() {
+interface MarkersContainerProps {
+  type?: "home" | "upload";
+}
+
+export default function MarkersContainer({
+  type = "home",
+}: MarkersContainerProps) {
   const map = useAtomValue(mapAtom);
   const infos = useAtomValue(infosAtom);
   const [selectInfo, setSelectInfo] = useAtom(selectInfoAtom);
+
+  const onSubmit = useCallback(() => {
+    console.log("submit");
+  }, []);
 
   if (!map || !infos) return null;
 
@@ -38,7 +49,7 @@ export default function MarkersContainer() {
       <InfoWindow
         selectInfo={selectInfo}
         map={map}
-        onSubmit={() => console.log("submit")}
+        onSubmit={type === "upload" ? onSubmit : undefined}
       />
     </>
   );
