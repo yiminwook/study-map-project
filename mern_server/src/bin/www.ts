@@ -3,10 +3,10 @@
 /**
  * Module dependencies.
  */
+import http from 'http';
 import app from '../app';
 import debug from 'debug';
-
-import http from 'http';
+import mongoose from 'mongoose';
 
 /**
  * Get port from environment and store in Express.
@@ -14,6 +14,13 @@ import http from 'http';
 
 const port = normalizePort('3001');
 app.set('port', port);
+
+mongoose
+  .connect(`mongodb://mern:merntest@localhost:27017/?authSource=admin`)
+  .then(() => {
+    console.log('Connected to MongoDB');
+  })
+  .catch((err) => console.log(err));
 
 /**
  * Create HTTP server.
