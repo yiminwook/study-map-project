@@ -24,8 +24,9 @@ export default React.memo(function Input({
   onChange,
   onSubmit,
 }: InputProps) {
-  const onEnterSubmit = (e: any) => {
-    if (!onSubmit) return;
+  const onEnterSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // 한글 조합중일때는 엔터안되게
+    if (!onSubmit || e.nativeEvent.isComposing) return;
     if (e.key === "Enter") {
       onSubmit();
     }
