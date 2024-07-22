@@ -11,7 +11,6 @@ export class HttpException extends Error {
 
 const ErrorHandler = (err: HttpException, req: Request, res: Response, next: NextFunction) => {
   const errStatus = err.status;
-  console.log(err.message);
   const errMsg = err.message || 'Something went wrong';
   res.status(errStatus).json({
     message: errMsg,

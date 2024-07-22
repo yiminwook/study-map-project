@@ -8,6 +8,7 @@ import app from '../app';
 import debug from 'debug';
 import mongoose from 'mongoose';
 
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_NAME } = process.env;
 /**
  * Get port from environment and store in Express.
  */
@@ -16,7 +17,7 @@ const port = normalizePort('8080');
 app.set('port', port);
 
 mongoose
-  .connect(`mongodb://mern:merntest@localhost:27017/mern?authSource=admin`)
+  .connect(`mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=admin`)
   .then(() => {
     console.log('Connected to MongoDB');
   })
