@@ -12,11 +12,11 @@ import mongoose from 'mongoose';
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort('3001');
+const port = normalizePort('8080');
 app.set('port', port);
 
 mongoose
-  .connect(`mongodb://mern:merntest@localhost:27017/?authSource=admin`)
+  .connect(`mongodb://mern:merntest@localhost:27017/mern?authSource=admin`)
   .then(() => {
     console.log('Connected to MongoDB');
   })
