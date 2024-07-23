@@ -31,16 +31,13 @@ export default function Marker({
     }
 
     if (onClick) {
-      naver.maps.Event.addListener(marker, "click", () => {
-        map.panTo(position); // 클릭시 지도이동
-        onClick();
-      });
+      naver.maps.Event.addListener(marker, "click", onClick);
     }
 
     return () => {
       marker?.setMap(null);
     };
-  }, [map]);
+  }, [map, content, onClick, position]);
 
   return null;
 }

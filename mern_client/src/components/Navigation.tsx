@@ -14,6 +14,7 @@ import { useInput } from "@/hooks/useInput";
 import { infosAtom, selectInfoAtom } from "@/atoms/info";
 import { useQuery } from "react-query";
 import { searchKeyword } from "@/apis/search";
+import { mapAtom } from "@/atoms/map";
 
 interface NavigationProps {
   type?: "home" | "upload";
@@ -25,6 +26,7 @@ export default function Navigation({ type = "home" }: NavigationProps) {
   const setInfos = useSetAtom(infosAtom);
   const setSelectInfo = useSetAtom(selectInfoAtom);
   const [keyword, setKeyword] = useState("");
+  const [map] = useAtom(mapAtom);
 
   useQuery({
     queryKey: ["search", keyword],
@@ -33,6 +35,18 @@ export default function Navigation({ type = "home" }: NavigationProps) {
     onSuccess: (infos) => {
       setSelectInfo(() => null); //선택된 마커 초기화
       setInfos(() => infos);
+
+      if (!map) return;
+      const bounds = new naver.maps.LatLngBounds(
+        new naver.maps.LatLng(0, 0),
+        new naver.maps.LatLng(0, 0)
+      );
+
+      infos.forEach((info) => {
+        bounds.extend(info.position);
+      });
+
+      map.panToBounds(bounds);
     },
     enabled: !!keyword,
   });
