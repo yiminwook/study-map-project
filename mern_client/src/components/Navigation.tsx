@@ -8,11 +8,12 @@ import { GoPlus } from "react-icons/go";
 import { FiArrowLeft } from "react-icons/fi";
 import { BiSearch } from "react-icons/bi";
 import { selectAtom } from "@/atoms/search";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import Input from "./common/Input";
 import { useInput } from "@/hooks/useInput";
-import { infosAtom } from "@/atoms/info";
-import { infos } from "@/data/infos";
+import { infosAtom, selectInfoAtom } from "@/atoms/info";
+import { useQuery } from "react-query";
+import { searchKeyword } from "@/apis/search";
 
 interface NavigationProps {
   type?: "home" | "upload";
@@ -22,13 +23,29 @@ export default function Navigation({ type = "home" }: NavigationProps) {
   const [select, setSelect] = useAtom(selectAtom);
   const { value, onChage } = useInput("");
   const setInfos = useSetAtom(infosAtom);
+  const setSelectInfo = useSetAtom(selectInfoAtom);
+  const [keyword, setKeyword] = useState("");
+
+  useQuery({
+    queryKey: ["search", keyword],
+    queryFn: () => searchKeyword(keyword),
+    select: (result) => result.data.data,
+    onSuccess: (infos) => {
+      setSelectInfo(() => null); //선택된 마커 초기화
+      setInfos(() => infos);
+    },
+    enabled: !!keyword,
+  });
 
   const onChangeSelect = useCallback(() => {
     setSelect((pre) => !pre);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [select, setSelect]);
 
   const onSubmit = useCallback(() => {
-    setInfos(() => infos);
+    setKeyword(() => value);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   return (

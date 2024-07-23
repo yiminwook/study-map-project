@@ -3,7 +3,6 @@ import MapContainer from "@/components/MapContainer";
 import MarkersContainer from "@/components/MarkersContainer";
 import Navigation from "@/components/Navigation";
 import SearchBoard from "@/components/SearchBoard";
-import { infos } from "@/data/infos";
 import { useSetAtom } from "jotai";
 import { useEffect } from "react";
 
@@ -15,6 +14,7 @@ export default function Upload() {
     // 초기화
     setInfos(() => null);
     setSelectInfo(() => null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
